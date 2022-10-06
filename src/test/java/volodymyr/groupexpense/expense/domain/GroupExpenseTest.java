@@ -1,7 +1,7 @@
 package volodymyr.groupexpense.expense.domain;
 
 import org.junit.jupiter.api.Test;
-import volodymyr.groupexpense.expense.domain.dto.GroupExpenseDTO;
+import volodymyr.groupexpense.expense.domain.dto.CreateGroupExpenseDTO;
 import volodymyr.groupexpense.expense.domain.exceptions.InvalidGroupNameException;
 
 import java.time.LocalDateTime;
@@ -14,7 +14,7 @@ class GroupExpenseTest {
     @Test
     void should_return_new_group_expense() {
         //given
-        GroupExpenseDTO expenseDTO = GroupExpenseDTO
+        CreateGroupExpenseDTO expenseDTO = CreateGroupExpenseDTO
                 .builder()
                 .name("trip")
                 .build();
