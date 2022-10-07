@@ -1,16 +1,16 @@
 package volodymyr.groupexpense.expense.domain;
 
 import lombok.Builder;
-import volodymyr.groupexpense.expense.domain.dto.CreateExpenseDTO;
 import volodymyr.groupexpense.expense.domain.dto.CreateGroupExpenseDTO;
+import volodymyr.groupexpense.expense.domain.dto.UpdateExpenseInGroupExpense;
 import volodymyr.groupexpense.expense.domain.type.Status;
-import volodymyr.groupexpense.expense.domain.vo.GroupName;
+import volodymyr.groupexpense.expense.domain.vo.*;
 
 import java.time.LocalDateTime;
 import java.util.Set;
 
-import static volodymyr.groupexpense.expense.domain.type.Status.*;
-import static volodymyr.groupexpense.expense.domain.vo.GroupName.*;
+import static volodymyr.groupexpense.expense.domain.type.Status.IN_PROGRESS;
+import static volodymyr.groupexpense.expense.domain.vo.GroupName.createName;
 
 //AggregateRoot
 
@@ -41,7 +41,7 @@ public class GroupExpense {
 //        this.createTime = createTime;
 //    }
 
-    public static GroupExpense createNewGroupExpense(CreateGroupExpenseDTO expenseDTO){
+    public static GroupExpense createNewGroupExpense(CreateGroupExpenseDTO expenseDTO) {
         return GroupExpense.builder()
                 .name(createName(expenseDTO.getName()))
                 .createTime(LocalDateTime.now())
@@ -49,12 +49,19 @@ public class GroupExpense {
     }
 
 
-    public static GroupExpense addExpenseToGroupExpense(CreateExpenseDTO expenseDTO){
-        return GroupExpense.builder()
-                .expenses.add(expenseDTO.)
-                //TODO DOROB!!!
+    public static GroupExpense addExpenseToGroupExpense(UpdateExpenseInGroupExpense groupExpense) {
+        var expenseName = new ExpenseName(groupExpense.getExpenseDTO().getExpenseName());
+        var payment = new Payment(groupExpense.getExpenseDTO().getPayment(),
+                groupExpense.getExpenseDTO().getCurrency());
+        var payer = new Payer(new NamePayer(groupExpense.getExpenseDTO().getFirstName(),
+                groupExpense.getExpenseDTO().getLastName()), payment);
+        var expense = Expense.builder().expenseName(expenseName).payer(payer).build();
+
+        return GroupExpense
+                .builder()
+                .id(groupExpense.getGroupExpenseDTO().getId())
+                .name(groupExpense.getGroupExpenseDTO().getName())
+                .expenses(Set.of(expense))
                 .build();
     }
-
-
 }

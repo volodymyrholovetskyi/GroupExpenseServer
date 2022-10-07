@@ -7,7 +7,7 @@ public class NamePayer {
     private String firstName;
     private String lastName;
 
-    private NamePayer(String firstName, String lastName) {
+    public NamePayer(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
