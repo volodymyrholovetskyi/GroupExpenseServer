@@ -1,4 +1,4 @@
-package volodymyr.groupexpense.expense.domain.dto;
+package volodymyr.groupexpense.expense.domain.dto.outcoming;
 
 import lombok.Getter;
 import volodymyr.groupexpense.expense.domain.vo.GroupName;

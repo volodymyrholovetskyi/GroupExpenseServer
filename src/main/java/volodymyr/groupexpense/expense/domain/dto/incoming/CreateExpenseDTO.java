@@ -1,4 +1,4 @@
-package volodymyr.groupexpense.expense.domain.dto;
+package volodymyr.groupexpense.expense.domain.dto.incoming;
 
 import lombok.Getter;
 

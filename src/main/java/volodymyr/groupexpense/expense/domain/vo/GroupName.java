@@ -13,7 +13,7 @@ public class GroupName {
         this.name = name;
     }
 
-    public static GroupName createName(String name) {
+    public static GroupName groupName(String name) {
         if (name == null || name.length() < 3) {
             throw new InvalidGroupNameException(name);
         }

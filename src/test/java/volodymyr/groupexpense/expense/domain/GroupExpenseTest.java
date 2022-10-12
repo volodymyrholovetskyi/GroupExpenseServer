@@ -1,34 +1,32 @@
 package volodymyr.groupexpense.expense.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import volodymyr.groupexpense.expense.domain.dto.CreateGroupExpenseDTO;
-import volodymyr.groupexpense.expense.domain.exceptions.InvalidGroupNameException;
-
-import java.time.LocalDateTime;
+import volodymyr.groupexpense.expense.domain.dto.incoming.CreateGroupExpenseDTO;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static volodymyr.groupexpense.expense.domain.type.Status.*;
 
 class GroupExpenseTest {
+
+    GroupExpense groupExpense;
+    @BeforeEach
+    void setUp() {
+        groupExpense = GroupExpense.builder().build();
+    }
 
     @Test
     void should_return_new_group_expense() {
         //given
-        CreateGroupExpenseDTO expenseDTO = CreateGroupExpenseDTO
-                .builder()
-                .name("trip")
-                .build();
+        CreateGroupExpenseDTO dto = new CreateGroupExpenseDTO("Trip to the mountains");
         //then
-        GroupExpense newGroupExpense = GroupExpense.createNewGroupExpense(expenseDTO);
+        GroupExpense newGroupExpense = groupExpense.createNewGroupExpense(dto);
         //when
-        assertThat(newGroupExpense.name.getName()).isEqualTo("trip");
+        assertThat(newGroupExpense.name.getName()).isEqualTo("Trip to the mountains");
+        assertThat(newGroupExpense.status).isEqualTo(IN_PROGRESS);
     }
 
-    @Test
-    void exception_should_be_thrown_if_the_group_name_is_null() {
-        //given
-        //when
-        //then
-        assertThrows(InvalidGroupNameException.class, () -> new GroupExpense(null, LocalDateTime.now()));
-    }
+
 }
