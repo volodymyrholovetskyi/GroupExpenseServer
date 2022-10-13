@@ -5,18 +5,24 @@ import volodymyr.groupexpense.expense.domain.type.Currency;
 
 import java.math.BigDecimal;
 
+import static volodymyr.groupexpense.expense.domain.type.Currency.*;
+
 public class Payment {
 
     BigDecimal payment;
 
     Currency currency;
 
-    public Payment(BigDecimal payment, String currency) {
+    private Payment(BigDecimal payment, String currency){
         if (payment.compareTo(BigDecimal.ZERO) < 0) {
             throw new MoneyInvalidAmountException("The value must be greater than zero");
         }
         this.payment = payment;
-        this.currency = Currency.verificationType(currency);
+        this.currency = verificationType(currency);
+    }
+
+    public static Payment createPayment(BigDecimal payment, String currency) {
+       return new Payment(payment, currency);
     }
 
     public BigDecimal totalCost(BigDecimal many) {

@@ -5,11 +5,15 @@ import lombok.Getter;
 @Getter
 public class Payer {
 
-    private NamePayer name;
+    private FullNamePayer name;
     private Payment payment;
 
-    public Payer(NamePayer name, Payment payment) {
+    private Payer(FullNamePayer name, Payment payment) {
         this.name = name;
         this.payment = payment;
+    }
+
+    public static Payer createPayer(FullNamePayer fullName, Payment payment){
+        return new Payer(fullName, payment);
     }
 }

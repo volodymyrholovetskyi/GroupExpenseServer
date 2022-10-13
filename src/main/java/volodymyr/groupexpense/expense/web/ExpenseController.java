@@ -19,6 +19,6 @@ public class ExpenseController {
     @PostMapping()
     void create(@RequestBody CreateGroupExpenseDTO expenseDTO) {
         System.out.println(expenseDTO.toString());
-        expenseService.createGroupExpense(expenseDTO);
+        expenseService.createNewGroupExpense(expenseDTO);
     }
 }

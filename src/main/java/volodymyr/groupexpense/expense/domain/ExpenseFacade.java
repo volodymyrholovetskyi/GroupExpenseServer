@@ -1,11 +1,16 @@
 package volodymyr.groupexpense.expense.domain;
 
+import volodymyr.groupexpense.expense.domain.dto.incoming.CreateExpenseDTO;
 import volodymyr.groupexpense.expense.domain.dto.incoming.CreateGroupExpenseDTO;
-import volodymyr.groupexpense.expense.domain.dto.incoming.UpdateExpenseInGroupExpense;
-import volodymyr.groupexpense.expense.domain.vo.*;
 
-import static volodymyr.groupexpense.expense.domain.GroupExpense.*;
-import static volodymyr.groupexpense.expense.domain.vo.GroupName.*;
+import static volodymyr.groupexpense.expense.domain.Expense.createExpense;
+import static volodymyr.groupexpense.expense.domain.GroupExpense.addExpenseToGroup;
+import static volodymyr.groupexpense.expense.domain.GroupExpense.createNewGroup;
+import static volodymyr.groupexpense.expense.domain.vo.ExpenseDescription.expenseDescription;
+import static volodymyr.groupexpense.expense.domain.vo.FullNamePayer.createParticipantName;
+import static volodymyr.groupexpense.expense.domain.vo.GroupName.groupName;
+import static volodymyr.groupexpense.expense.domain.vo.Payer.createPayer;
+import static volodymyr.groupexpense.expense.domain.vo.Payment.createPayment;
 
 public class ExpenseFacade {
 
@@ -13,12 +18,13 @@ public class ExpenseFacade {
         return createNewGroup(groupName(expenseDTO.name));
     }
 
-    public GroupExpense addExpenseToGroupExpense(UpdateExpenseInGroupExpense groupExpense) {
-        var expenseName = new ExpenseName(groupExpense.expenseName());
-        var payment = new Payment(groupExpense.payment(), groupExpense.currency());
-        var payer = new Payer(new NamePayer(groupExpense.firstName(), groupExpense.lastName()), payment);
-        var expense = Expense.builder().expenseName(expenseName).payer(payer).build();
+    public GroupExpense addExpenseToGroupExpense(CreateExpenseDTO expenseDTO) {
+        var payer = createPayer(
+                createParticipantName(expenseDTO.firstName(), expenseDTO.lastName()),
+                createPayment(expenseDTO.payment(), expenseDTO.currency())
+        );
 
-        return addExpense(expense);
+        var expense = createExpense(payer, expenseDescription(expenseDTO.description()));
+        return addExpenseToGroup(expense);
     }
 }

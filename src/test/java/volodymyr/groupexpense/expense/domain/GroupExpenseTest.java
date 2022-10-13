@@ -14,18 +14,7 @@ class GroupExpenseTest {
     GroupExpense groupExpense;
     @BeforeEach
     void setUp() {
-        groupExpense = GroupExpense.builder().build();
-    }
-
-    @Test
-    void should_return_new_group_expense() {
-        //given
-        CreateGroupExpenseDTO dto = new CreateGroupExpenseDTO("Trip to the mountains");
-        //then
-        GroupExpense newGroupExpense = groupExpense.createNewGroupExpense(dto);
-        //when
-        assertThat(newGroupExpense.name.getName()).isEqualTo("Trip to the mountains");
-        assertThat(newGroupExpense.status).isEqualTo(IN_PROGRESS);
+        groupExpense = new GroupExpense();
     }
 
 
