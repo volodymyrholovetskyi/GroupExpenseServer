@@ -17,7 +17,7 @@ import static volodymyr.groupexpense.expense.domain.type.Status.IN_PROGRESS;
 @Getter
 @ToString
 @NoArgsConstructor
-class GroupExpense {
+public class GroupExpense {
 
     protected Long id;
 

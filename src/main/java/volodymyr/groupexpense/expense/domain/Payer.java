@@ -1,8 +1,14 @@
-package volodymyr.groupexpense.expense.domain.vo;
+package volodymyr.groupexpense.expense.domain;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import volodymyr.groupexpense.expense.domain.vo.FullNamePayer;
+import volodymyr.groupexpense.expense.domain.vo.Payment;
 
 @Getter
+@ToString
+@NoArgsConstructor
 public class Payer {
 
     private FullNamePayer name;

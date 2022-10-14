@@ -1,11 +1,9 @@
 package volodymyr.groupexpense.expense.domain;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import volodymyr.groupexpense.expense.domain.vo.ExpenseDescription;
-import volodymyr.groupexpense.expense.domain.vo.Payer;
 
 import java.time.LocalDateTime;
 

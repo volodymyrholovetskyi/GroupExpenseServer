@@ -9,7 +9,7 @@ import static volodymyr.groupexpense.expense.domain.GroupExpense.createNewGroup;
 import static volodymyr.groupexpense.expense.domain.vo.ExpenseDescription.expenseDescription;
 import static volodymyr.groupexpense.expense.domain.vo.FullNamePayer.createParticipantName;
 import static volodymyr.groupexpense.expense.domain.vo.GroupName.groupName;
-import static volodymyr.groupexpense.expense.domain.vo.Payer.createPayer;
+import static volodymyr.groupexpense.expense.domain.Payer.createPayer;
 import static volodymyr.groupexpense.expense.domain.vo.Payment.createPayment;
 
 public class ExpenseFacade {
