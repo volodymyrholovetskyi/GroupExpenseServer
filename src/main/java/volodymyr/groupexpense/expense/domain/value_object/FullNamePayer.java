@@ -1,6 +1,8 @@
-package volodymyr.groupexpense.expense.domain.vo;
+package volodymyr.groupexpense.expense.domain.value_object;
 
-import volodymyr.groupexpense.expense.domain.exceptions.InvalidGroupNameException;
+import lombok.EqualsAndHashCode;
+import volodymyr.groupexpense.expense.domain.exceptions.InvalidGroupDescriptionException;
+@EqualsAndHashCode
 
 public class FullNamePayer {
 
@@ -12,9 +14,9 @@ public class FullNamePayer {
         this.lastName = lastName;
     }
 
-    public static FullNamePayer createParticipantName(String firstName, String lastName) {
+    public static FullNamePayer ofFullName(String firstName, String lastName) {
         if (firstName == null || lastName == null || firstName.length() < 3) {
-            throw new InvalidGroupNameException(firstName);
+            throw new InvalidGroupDescriptionException(firstName);
         }
         return new FullNamePayer(firstName, lastName);
     }

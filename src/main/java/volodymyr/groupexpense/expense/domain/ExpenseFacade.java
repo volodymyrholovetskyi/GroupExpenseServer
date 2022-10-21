@@ -1,30 +1,32 @@
 package volodymyr.groupexpense.expense.domain;
 
+import lombok.NoArgsConstructor;
 import volodymyr.groupexpense.expense.domain.dto.incoming.CreateExpenseDTO;
 import volodymyr.groupexpense.expense.domain.dto.incoming.CreateGroupExpenseDTO;
+import volodymyr.groupexpense.expense.domain.model.GroupExpense;
+import volodymyr.groupexpense.expense.domain.value_object.FullNamePayer;
 
-import static volodymyr.groupexpense.expense.domain.Expense.createExpense;
-import static volodymyr.groupexpense.expense.domain.GroupExpense.addExpenseToGroup;
-import static volodymyr.groupexpense.expense.domain.GroupExpense.createNewGroup;
-import static volodymyr.groupexpense.expense.domain.vo.ExpenseDescription.expenseDescription;
-import static volodymyr.groupexpense.expense.domain.vo.FullNamePayer.createParticipantName;
-import static volodymyr.groupexpense.expense.domain.vo.GroupName.groupName;
-import static volodymyr.groupexpense.expense.domain.Payer.createPayer;
-import static volodymyr.groupexpense.expense.domain.vo.Payment.createPayment;
+import static volodymyr.groupexpense.expense.domain.model.Expense.createExpense;
+import static volodymyr.groupexpense.expense.domain.model.GroupExpense.createNewGroup;
+import static volodymyr.groupexpense.expense.domain.value_object.ExpenseDescription.ofDescription;
+import static volodymyr.groupexpense.expense.domain.value_object.GroupDescription.ofName;
+import static volodymyr.groupexpense.expense.domain.model.Payer.createPayer;
+import static volodymyr.groupexpense.expense.domain.value_object.Payment.ofPayment;
 
+@NoArgsConstructor
 public class ExpenseFacade {
 
-    public GroupExpense createNewGroupExpense(CreateGroupExpenseDTO expenseDTO) {
-        return createNewGroup(groupName(expenseDTO.name));
+    public GroupExpense createGroupExpense(CreateGroupExpenseDTO expenseDTO) {
+        return createNewGroup(ofName(expenseDTO.name));
     }
 
-    public GroupExpense addExpenseToGroupExpense(CreateExpenseDTO expenseDTO) {
+    public GroupExpense addExpenseToGroup(Long idGroup, CreateExpenseDTO expenseDTO) {
         var payer = createPayer(
-                createParticipantName(expenseDTO.firstName(), expenseDTO.lastName()),
-                createPayment(expenseDTO.payment(), expenseDTO.currency())
+                FullNamePayer.ofFullName(expenseDTO.firstName(), expenseDTO.lastName()),
+                ofPayment(expenseDTO.payment(), expenseDTO.currency())
         );
 
-        var expense = createExpense(payer, expenseDescription(expenseDTO.description()));
-        return addExpenseToGroup(expense);
+        var expense = createExpense(payer, ofDescription(expenseDTO.description()));
+        return GroupExpense.addExpenseToGroup(idGroup, expense);
     }
 }

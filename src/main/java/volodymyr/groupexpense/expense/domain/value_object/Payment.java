@@ -1,5 +1,6 @@
-package volodymyr.groupexpense.expense.domain.vo;
+package volodymyr.groupexpense.expense.domain.value_object;
 
+import lombok.EqualsAndHashCode;
 import volodymyr.groupexpense.expense.domain.exceptions.MoneyInvalidAmountException;
 import volodymyr.groupexpense.expense.domain.type.Currency;
 
@@ -7,6 +8,7 @@ import java.math.BigDecimal;
 
 import static volodymyr.groupexpense.expense.domain.type.Currency.*;
 
+@EqualsAndHashCode
 public class Payment {
 
     BigDecimal payment;
@@ -14,14 +16,14 @@ public class Payment {
     Currency currency;
 
     private Payment(BigDecimal payment, String currency){
-        if (payment.compareTo(BigDecimal.ZERO) < 0) {
-            throw new MoneyInvalidAmountException("The value must be greater than zero");
-        }
         this.payment = payment;
         this.currency = verificationType(currency);
     }
 
-    public static Payment createPayment(BigDecimal payment, String currency) {
+    public static Payment ofPayment(BigDecimal payment, String currency) {
+        if (payment.compareTo(BigDecimal.ZERO) < 0) {
+            throw new MoneyInvalidAmountException("The value must be greater than zero");
+        }
        return new Payment(payment, currency);
     }
 

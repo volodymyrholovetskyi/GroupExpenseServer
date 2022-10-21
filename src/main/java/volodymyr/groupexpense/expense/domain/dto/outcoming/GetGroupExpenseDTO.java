@@ -1,14 +1,19 @@
 package volodymyr.groupexpense.expense.domain.dto.outcoming;
 
+import lombok.Builder;
 import lombok.Getter;
-import volodymyr.groupexpense.expense.domain.vo.GroupName;
+
+import java.util.Set;
 
 @Getter
+@Builder
 public class GetGroupExpenseDTO {
 
     private Long id;
 
-    private GroupName name;
+    private String name;
 
     private String status;
+
+    private Set<GetExpenseDTO> expenseDTO;
 }
