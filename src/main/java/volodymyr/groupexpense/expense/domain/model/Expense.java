@@ -1,16 +1,20 @@
-package volodymyr.groupexpense.expense.domain;
+package volodymyr.groupexpense.expense.domain.model;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import volodymyr.groupexpense.expense.domain.vo.ExpenseDescription;
+import lombok.experimental.SuperBuilder;
+import volodymyr.groupexpense.expense.domain.value_object.ExpenseDescription;
 
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @Getter
 @ToString
-class Expense {
+@SuperBuilder
+@EqualsAndHashCode
+public class Expense {
 
     private Payer payer;
     private ExpenseDescription expenseDescription;

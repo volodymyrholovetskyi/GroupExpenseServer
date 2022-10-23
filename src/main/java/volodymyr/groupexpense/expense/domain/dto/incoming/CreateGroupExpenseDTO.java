@@ -1,14 +1,12 @@
 package volodymyr.groupexpense.expense.domain.dto.incoming;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Builder
 public class CreateGroupExpenseDTO {
 
-    public String name;
+    public String description;
 }

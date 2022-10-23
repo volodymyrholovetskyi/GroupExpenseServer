@@ -1,13 +1,13 @@
-package volodymyr.groupexpense.expense.domain.vo;
+package volodymyr.groupexpense.expense.domain.value_object;
 
 import org.junit.jupiter.api.Test;
-import volodymyr.groupexpense.expense.domain.exceptions.InvalidGroupNameException;
+import volodymyr.groupexpense.expense.domain.exceptions.InvalidGroupDescriptionException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static volodymyr.groupexpense.expense.domain.vo.GroupName.groupName;
+import static volodymyr.groupexpense.expense.domain.value_object.GroupDescription.ofName;
 
-class GroupNameTest {
+class GroupDescriptionTest {
 
 
     @Test
@@ -15,8 +15,8 @@ class GroupNameTest {
         //given
         //when
         //then
-        assertThatThrownBy(() -> groupName("t"))
-                .isInstanceOf(InvalidGroupNameException.class)
+        assertThatThrownBy(() -> ofName("t"))
+                .isInstanceOf(InvalidGroupDescriptionException.class)
                 .hasMessage("Group name is invalid: t");
     }
 
@@ -25,17 +25,17 @@ class GroupNameTest {
         //given
         //when
         //then
-        assertThatThrownBy(() -> groupName(null))
-                .isInstanceOf(InvalidGroupNameException.class)
+        assertThatThrownBy(() -> ofName(null))
+                .isInstanceOf(InvalidGroupDescriptionException.class)
                 .hasMessage("Group name is invalid: null");
     }
 
     @Test
     void is_should_return_group_name() {
         //given
-        GroupName trip = groupName("trip");
+        GroupDescription trip = ofName("trip");
         //when
         //then
-        assertThat(trip.getName()).isEqualTo("trip");
+        assertThat(trip.getGroupDescription()).isEqualTo("trip");
     }
 }

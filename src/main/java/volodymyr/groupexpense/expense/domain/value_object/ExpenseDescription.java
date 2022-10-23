@@ -1,5 +1,8 @@
-package volodymyr.groupexpense.expense.domain.vo;
+package volodymyr.groupexpense.expense.domain.value_object;
 
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode
 public class ExpenseDescription {
 
     private String description;
@@ -8,7 +11,7 @@ public class ExpenseDescription {
         this.description = description;
     }
 
-    public static ExpenseDescription expenseDescription(String description){
+    public static ExpenseDescription ofDescription(String description){
         return new ExpenseDescription(description);
     }
 }

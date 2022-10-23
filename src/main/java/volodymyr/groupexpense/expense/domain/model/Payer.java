@@ -1,14 +1,18 @@
-package volodymyr.groupexpense.expense.domain;
+package volodymyr.groupexpense.expense.domain.model;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import volodymyr.groupexpense.expense.domain.vo.FullNamePayer;
-import volodymyr.groupexpense.expense.domain.vo.Payment;
+import lombok.experimental.SuperBuilder;
+import volodymyr.groupexpense.expense.domain.value_object.FullNamePayer;
+import volodymyr.groupexpense.expense.domain.value_object.Payment;
 
 @Getter
 @ToString
 @NoArgsConstructor
+@SuperBuilder
+@EqualsAndHashCode
 public class Payer {
 
     private FullNamePayer name;
