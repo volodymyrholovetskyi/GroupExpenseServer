@@ -6,7 +6,6 @@ import volodymyr.groupexpense.expense.domain.dto.incoming.CreateExpenseDTO;
 import volodymyr.groupexpense.expense.domain.dto.incoming.CreateGroupExpenseDTO;
 import volodymyr.groupexpense.expense.domain.exceptions.InvalidGroupDescriptionException;
 import volodymyr.groupexpense.expense.domain.exceptions.MoneyInvalidAmountException;
-import volodymyr.groupexpense.expense.domain.model.Expense;
 import volodymyr.groupexpense.expense.domain.model.GroupExpense;
 import volodymyr.groupexpense.expense.domain.value_object.Payment;
 
@@ -49,7 +48,7 @@ class ExpenseFacadeTest extends ExpenseTestBase {
     void when_description_is_null_return_exception() {
         //given
         CreateGroupExpenseDTO group = CreateGroupExpenseDTO.builder()
-                .name(null)
+                .description(null)
                 .build();
         //then
         //when

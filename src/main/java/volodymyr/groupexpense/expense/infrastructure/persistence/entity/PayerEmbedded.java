@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Embeddable;
 import java.math.BigDecimal;
@@ -12,12 +13,11 @@ import java.math.BigDecimal;
 @ToString
 @Setter
 @NoArgsConstructor
+@SuperBuilder
 @Embeddable
 public class PayerEmbedded {
 
-    private String firstName;
-
-    private String lastName;
+    private String name;
 
     private BigDecimal payment;
 

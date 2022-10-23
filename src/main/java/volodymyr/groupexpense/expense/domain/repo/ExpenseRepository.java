@@ -9,6 +9,8 @@ public interface ExpenseRepository {
 
     GroupExpense save(GroupExpense groupExpense);
 
+    GroupExpense update(GroupExpense groupExpense);
+
     Set<GroupExpense> findAll();
 
     Optional<GroupExpense> findById(Long id);

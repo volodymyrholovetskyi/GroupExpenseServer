@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 import volodymyr.groupexpense.jpa.BaseEntity;
 
 import javax.persistence.Embedded;
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
+@SuperBuilder
 @Entity
 @Table(name = "expense")
 public

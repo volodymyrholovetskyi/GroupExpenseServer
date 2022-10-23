@@ -57,7 +57,7 @@ public class GroupExpense {
     public GroupExpenseEntity toGroupExpenseEntity() {
         return GroupExpenseEntity
                 .builder()
-                .name(groupDescription.getGroupDescription())
+                .description(groupDescription.getGroupDescription())
                 .status(status.toString())
                 .createTime(createTime)
                 .build();

@@ -1,10 +1,14 @@
 package volodymyr.groupexpense.expense.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import volodymyr.groupexpense.expense.domain.dto.incoming.CreateExpenseDTO;
 import volodymyr.groupexpense.expense.domain.dto.incoming.CreateGroupExpenseDTO;
 import volodymyr.groupexpense.expense.domain.model.GroupExpense;
+import volodymyr.groupexpense.expense.domain.repo.ExpenseRepository;
 import volodymyr.groupexpense.expense.domain.value_object.FullNamePayer;
+import volodymyr.groupexpense.expense.infrastructure.persistence.dao.impl.ExpenseRepositoryImpl;
 
 import static volodymyr.groupexpense.expense.domain.model.Expense.createExpense;
 import static volodymyr.groupexpense.expense.domain.model.GroupExpense.createNewGroup;
@@ -13,11 +17,17 @@ import static volodymyr.groupexpense.expense.domain.value_object.GroupDescriptio
 import static volodymyr.groupexpense.expense.domain.model.Payer.createPayer;
 import static volodymyr.groupexpense.expense.domain.value_object.Payment.ofPayment;
 
-@NoArgsConstructor
 public class ExpenseFacade {
 
+    private final ExpenseRepository repository;
+
+    public ExpenseFacade(){
+        this.repository = new ExpenseRepositoryImpl();
+    }
+
     public GroupExpense createGroupExpense(CreateGroupExpenseDTO expenseDTO) {
-        return createNewGroup(ofName(expenseDTO.name));
+        System.out.println(expenseDTO.description);
+        return createNewGroup(ofName(expenseDTO.description));
     }
 
     public GroupExpense addExpenseToGroup(Long idGroup, CreateExpenseDTO expenseDTO) {
@@ -29,4 +39,6 @@ public class ExpenseFacade {
         var expense = createExpense(payer, ofDescription(expenseDTO.description()));
         return GroupExpense.addExpenseToGroup(idGroup, expense);
     }
+
+
 }

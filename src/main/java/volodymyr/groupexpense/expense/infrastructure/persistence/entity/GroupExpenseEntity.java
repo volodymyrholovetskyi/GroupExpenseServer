@@ -20,7 +20,7 @@ import java.util.Set;
 @Table(name = "group_expense")
 public class GroupExpenseEntity extends BaseEntity {
 
-    private String name;
+    private String description;
 
     private String status;
 

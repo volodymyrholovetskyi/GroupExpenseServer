@@ -33,10 +33,29 @@ class ExpenseMapper {
                 .build();
     }
 
+    protected static ExpenseEntity toExpenseEntity(Expense expense){
+        return ExpenseEntity
+                .builder()
+                .createTime(expense.getCreateTime())
+                .description(expense.getExpenseDescription().toString())
+                .payer(toPayerEmbedded(expense.getPayer()))
+                .build();
+    }
+
+    private static PayerEmbedded toPayerEmbedded(Payer payer){
+        return PayerEmbedded
+                .builder()
+                .name(payer.getName().fullName())
+                .payment(payer.getPayment().getPayment())
+                .currency(payer.getPayment().getCurrency().toString())
+                .build();
+    }
+
      private static Payer toPayer(PayerEmbedded payer) {
+         String[] fullName = payer.getName().split(" ");
          return Payer
                  .builder()
-                 .name(ofFullName(payer.getFirstName(), payer.getLastName()))
+                 .name(ofFullName(fullName[0], fullName[0]))
                  .payment(ofPayment(payer.getPayment(), payer.getCurrency()))
                  .build();
      }

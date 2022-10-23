@@ -8,5 +8,5 @@ import lombok.*;
 @Builder
 public class CreateGroupExpenseDTO {
 
-    public String name;
+    public String description;
 }

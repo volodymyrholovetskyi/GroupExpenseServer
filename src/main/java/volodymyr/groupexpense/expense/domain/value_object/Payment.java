@@ -1,6 +1,7 @@
 package volodymyr.groupexpense.expense.domain.value_object;
 
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import volodymyr.groupexpense.expense.domain.exceptions.MoneyInvalidAmountException;
 import volodymyr.groupexpense.expense.domain.type.Currency;
 
@@ -9,6 +10,7 @@ import java.math.BigDecimal;
 import static volodymyr.groupexpense.expense.domain.type.Currency.*;
 
 @EqualsAndHashCode
+@Getter
 public class Payment {
 
     BigDecimal payment;
